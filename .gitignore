@@ -1,0 +1,4 @@
+# We don't to accidentally check in our database, since that may contain sensitive data
+db
+
+
