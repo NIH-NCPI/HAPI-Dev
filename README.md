@@ -25,3 +25,9 @@ By default, the application runs in the foreground of the shell in which it was 
 
 ## help
 For a complete list of commands, please see the standard linux help listing using the flag ''-h''. 
+
+# Implementation Guide
+Currently, I have a version of the IG housed along with the corresponding version's configuration. Using a local file, we can add additional files as needed. However, if we prefer to rely solely on the live IG, we can change the path to be the actual IG that is currently deployed. 
+
+# Validation Support
+At the time of my writing this README, I am unable to get the server to validate on load. However, it will validate against the NCPI FHIR IG using the standard FHIR $validate operator. 
