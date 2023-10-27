@@ -1,13 +1,27 @@
 # HAPI-Dev
-This repository provides some simple helper scripts to launch a local FHIR server that persists using local storage. 
+This repository provides a simple helper to launch a local FHIR server that persists using local storage and has some pre-defined defaults built in. 
 
 At this time, it is set to use the H2 database, which is the easiest to set up but if performance turns out to be undesirable, it may get updated to use Postgres. 
 
-# TODO
-## Figure out how to get R5 working
-I honestly think there are changes going on since the last day or two because I have had this working recently but I get strange errors either about lucene or subscription errors on R5 
-    * lucene errors occur if I keep the db path the same as the default but use map a local directory to that position. That works just fine for R4B...for now
-    * Subscription errors appear to be specific to setting R5 as the version. I have no idea what this is and will check back at some point to see if it is resolved by updates to the image.
+# R4/R4B Support
+At this time, we have two configurations ready for use as dev environments: R4 and R4B 
 
-# Concerns
-I'm a little worried that breaking changes seem to be getting checked into the main hapi-fhir repo. Of course, I may be compiling the docker image wrong, but if that's the case, they should fix the shell script that provides the command I'm using. I just can't get it to compile and I'm not familiar enough with the code nor the build system to know how to go about fixing them myself. 
+R5 results in errors that aren't obvious to me what is failing, so, until I have more time to dig into the issue, R5 support is up to you to work out. 
+
+# Usage
+The script itself, start-server.py, should run out of the box with Python 3.8 or later. 
+
+By default, the following command will bring a local FHIR server running R4B up. 
+
+> ./start-server.py 
+
+This will bring the server up using R4B and is based on the configuration settings found inside ''cfg/R4B/app.yaml''. This configuration also specifies that data will persist in an h2 database inside a directory mapped from the local directory, ''db''. The R4 and R4B databases are not compatible, so each version has a different file specified for that DB. 
+
+## Port
+By default, the port setting is 8080, however the user can specify whichever port they want using the ''-p'' flag. 
+
+## detach
+By default, the application runs in the foreground of the shell in which it was started. If you wish to send the process to the background, you can use the flag -d, --detach when run. This will launch docker in detached mode. The container ID will be reported immediately which you can use to reattach and stop (via docker commands).
+
+## help
+For a complete list of commands, please see the standard linux help listing using the flag ''-h''. 

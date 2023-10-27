@@ -14,7 +14,7 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    #url: 'jdbc:h2:file:/hapi/h2'
+    url: 'jdbc:h2:file:./database/R4h2'
     #url: jdbc:h2:mem:test_mem
     username: sa
     password: null
@@ -52,12 +52,13 @@ spring:
 #      hibernate.search.backend.type: elasticsearch
 #      hibernate.search.backend.analysis.configurer: ca.uhn.fhir.jpa.search.HapiHSearchAnalysisConfigurers$HapiElasticAnalysisConfigurer
 hapi:
+  enable_repository_validating_interceptor: true
   fhir:
 
     ### This enables the swagger-ui at /fhir/swagger-ui/index.html as well as the /fhir/api-docs (see https://hapifhir.io/hapi-fhir/docs/server_plain/openapi.html)
     openapi_enabled: true
     ### This is the FHIR version. Choose between, DSTU2, DSTU3, R4 or R5
-    #fhir_version: R4B
+    fhir_version: R4
     ### This flag when enabled to true, will avail evaluate measure operations from CR Module.
     ### Flag is false by default, can be passed as command line argument to override.
     cr_enabled: "${CR_ENABLED: false}"
@@ -76,8 +77,28 @@ hapi:
     #    defer_indexing_for_codesystems_of_size: 101
     #    install_transitive_ig_dependencies: true
     ### tells the server whether to attempt to load IG resources that are already present
-    #    reload_existing_implementationGuides : false
-    #implementationguides:
+    #reload_existing_implementationGuides : true
+    implementationguides:
+      ncpi_0_2_0:
+        packageUrl: file:/configs/package.tgz
+        name: NCPI-FHIR-Implementation-Guide
+        version: 0.2.0
+        fhir_version: R4
+        #supported_resource_types:
+        #  - ConceptMap
+        #  - Condition
+        #  - Encounter
+        #  - Group
+        #  - Observation
+        #  - Patient 
+        #  - ResearchStudy
+        #  - ResearchSubject
+        #  - Specimen
+        #  - DocumentReference
+        enable_repository_validating_interceptor: true
+      #enable_repository_validating_interceptor: true
+    #enable_repository_validating_interceptor: true
+  
     ###    example from registry (packages.fhir.org)
     #  swiss:
     #    name: swiss.mednet.fhir
@@ -113,6 +134,10 @@ hapi:
     #    enable_index_missing_fields: false
     #    enable_index_of_type: true
     #    enable_index_contained_resource: false
+
+    default_encoding: JSON
+    default_page_size: 20
+    default_pretty_print: true
     ###  !!Extended Lucene/Elasticsearch Indexing is still a experimental feature, expect some features (e.g. _total=accurate) to not work as expected!!
     ###  more information here: https://hapifhir.io/hapi-fhir/docs/server_jpa/elastic.html
     advanced_lucene_indexing: false

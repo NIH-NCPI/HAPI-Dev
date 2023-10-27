@@ -14,7 +14,10 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    #url: 'jdbc:h2:file:/hapi/h2'
+    url: 'jdbc:h2:file:./database/R5h2'
+    #url: 'jdbc:h2:file:./target/database/h2'
+    #url: 'jdbc:h2:file:./target/database/hapi'
+    #url: 'jdbc:h2:file:/h2'
     #url: jdbc:h2:mem:test_mem
     username: sa
     password: null
@@ -57,7 +60,7 @@ hapi:
     ### This enables the swagger-ui at /fhir/swagger-ui/index.html as well as the /fhir/api-docs (see https://hapifhir.io/hapi-fhir/docs/server_plain/openapi.html)
     openapi_enabled: true
     ### This is the FHIR version. Choose between, DSTU2, DSTU3, R4 or R5
-    #fhir_version: R4B
+    fhir_version: R5
     ### This flag when enabled to true, will avail evaluate measure operations from CR Module.
     ### Flag is false by default, can be passed as command line argument to override.
     cr_enabled: "${CR_ENABLED: false}"
@@ -177,12 +180,12 @@ hapi:
         name: Local Tester
         server_address: 'http://localhost:8080/fhir'
         refuse_to_fetch_third_party_urls: false
-        fhir_version: R4
+        fhir_version: R5
       global:
         name: Global Tester
         server_address: "http://hapi.fhir.org/baseR4"
         refuse_to_fetch_third_party_urls: false
-        fhir_version: R4
+        fhir_version: R5
     #    validation:
     #      requests_enabled: true
     #      responses_enabled: true
