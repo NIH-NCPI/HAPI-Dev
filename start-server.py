@@ -63,10 +63,18 @@ config_fn = config_dir / args.config_filename
 dbdir = Path(args.db)
 dbdir.mkdir(parents=True, exist_ok=True)
 
+# if the user has Macbook with amd64, select compatible platform
+platform=""
+platform = run(["arch"], capture_output=True, text=True)
+print(platform.stdout.strip())
+if  platform.stdout.strip() == "arm64":
+    platform = "--platform linux/amd64 "
+
 cmd = [
     "docker",
     "run",
     "--rm",
+    f"{platform}"
     "-p",
     f"{args.port}:8080",
     "-v",
@@ -84,6 +92,8 @@ cmd += [
     "-n",
     args.container_name,
 ]
+
+
 
 print(" ".join(cmd))
 # os.system(" ".join(cmd))  # , capture_output=True)
