@@ -83,8 +83,9 @@ hapi:
         packageUrl: file:/configs/package.tgz
         #packageUrl: https://deploy-preview-65--ncpi-fhir-ig.netlify.app/package.tgz
         #packageUrl: https://nih-ncpi.github.io/ncpi-fhir-ig/package.tgz
-        name: NCPI-FHIR-Implementation-Guide
-        version: 0.2.0
+        #name: NCPI-FHIR-Implementation-Guide
+        name: ncpi-fhir-implementation-guide-v2
+        version: 0.1.0
         fhir_version: R4B
         #supported_resource_types:
         #  - ConceptMap
@@ -148,7 +149,7 @@ hapi:
     #    enforce_referential_integrity_on_delete: false
     # This is an experimental feature, and does not fully support _total and other FHIR features.
     #    enforce_referential_integrity_on_delete: false
-    enforce_referential_integrity_on_write: false
+    enforce_referential_integrity_on_write: true
     #    etag_support_enabled: true
     #    expunge_enabled: true
     #    client_id_strategy: ALPHANUMERIC
