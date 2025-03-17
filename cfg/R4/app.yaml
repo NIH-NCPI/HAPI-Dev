@@ -81,8 +81,8 @@ hapi:
     implementationguides:
       ncpi_0_2_0:
         packageUrl: file:/configs/package.tgz
-        name: NCPI-FHIR-Implementation-Guide
-        version: 0.2.0
+        name: ncpi-fhir-implementation-guide-v2
+        version: 0.1.0
         fhir_version: R4
         #supported_resource_types:
         #  - ConceptMap
