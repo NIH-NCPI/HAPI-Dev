@@ -86,4 +86,4 @@ cmd += [
 ]
 
 print(" ".join(cmd))
-# os.system(" ".join(cmd))  # , capture_output=True)
+os.system(" ".join(cmd))  # , capture_output=True)
